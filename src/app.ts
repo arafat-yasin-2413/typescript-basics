@@ -1,3 +1,4 @@
+import type { Vehicle } from "./types/type.js";
 
 
 type Student = {
@@ -99,6 +100,12 @@ let admin1 = {
 
 console.log('Printing admin :', admin1);
 
+let myVehicle : Vehicle = {
+    name: "Toyota blue",
+    model: "2022",
+    wheels: 4,
+}
+
 
 // generics
 function greet<T,S>(value:T, value2:S): T {
@@ -112,3 +119,4 @@ function greet2<T,S>(value:T, value2:S): {value: T, value2: S} {
 
 console.log("Greet Function : ", greet(5, "yasin"));
 console.log("Greet Function 2 : ", greet2(6, "arafat"));
+
