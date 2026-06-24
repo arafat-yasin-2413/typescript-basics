@@ -60,7 +60,7 @@ Since browsers and Node.js cannot run `TypeScript` directly, it must be compiled
 * **`never`:** যে ফাংশনটি কখনোই তার স্বাভাবিক শেষ মাথায় পৌঁছায় না (যেমন: ফাংশনের ভেতর থেকে সবসময় এরর থ্রো করে অথবা ইনফিনিট লুপ চলে), তার রিটার্ন টাইপ হয় `never`।
 
 
-### Project Setup Guideline
+## Project Setup Guideline
 
 #### 1. Create a folder. Open it. And run : 
 ```bash
