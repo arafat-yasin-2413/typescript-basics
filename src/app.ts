@@ -1,1 +1,100 @@
-console.log('hello typescript');
+
+
+type Student = {
+    name: string;
+    class: number;
+    roll: number;
+    address?: string;
+}
+
+interface Doctor  {
+    name: string;
+    age: number;
+    department: string;
+    readonly college: string;
+}
+
+
+//********** */ 1. Primitive Data Types
+// string, number, boolean
+
+
+// Hints: Type define na kore dile nije theke dhore nibe.
+// Hints: Tai amra normally type define kore dei.
+let name: string = "James Bond";
+let age: number = 23;
+let isActive: boolean = true;
+
+//********** */ 2. Array
+let numbers: number[] = [2, 3, 5, 7, 9]; // valid
+// let numbers = [2, 3, 4, 5, "apple"]; // invalid
+// numbers.push("cat"); // invalid operation
+
+numbers.push(10);
+console.log(numbers);
+
+//********** */ 3. Object with Optional and Readonly
+let user: { name: string; age: number; isWorking: boolean, havePassport?: boolean, readonly batch: string } = {
+    name: "Yasin",
+    age: 18,
+    isWorking: true,
+    // havePassport: false // optional property
+    batch: "11",
+};
+
+// user.batch="12"; // will show compile-time error
+user.isWorking = false;
+
+
+console.log("user object : ", user);
+
+
+// ********** */ 4. Function
+function addNumbers (num1:number, num2:number):number {
+    return num1 + num2;
+}
+
+console.log("Sum of two numbers: ",addNumbers(5,7));
+
+
+// ********** */ 5. Type vs Interface
+// using type
+let student:Student= {
+    name: "Mahir",
+    class: 9,
+    roll: 12,
+    
+}
+console.log('printing student : ', student);
+
+
+// using interface
+let ashib : Doctor = {
+    name: "Ashib Ahmed",
+    age: 34,
+    department: "Neurology",
+    college: "DMC",
+}
+
+console.log("Printing Doctor: ", ashib);
+
+
+// using extends
+interface User {
+    name: string;
+    age: number; 
+    isActive: boolean;
+}
+
+interface Admin extends User  {
+    authorization: boolean;
+}
+
+let admin1 = {
+    name: "Martinez",
+    age: 36,
+    isActive: true,
+    authorization: true,
+}
+
+console.log('Printing admin :', admin1);
