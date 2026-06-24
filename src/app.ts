@@ -98,3 +98,17 @@ let admin1 = {
 }
 
 console.log('Printing admin :', admin1);
+
+
+// generics
+function greet<T,S>(value:T, value2:S): T {
+    // return {value, value2};
+    return value;
+}
+function greet2<T,S>(value:T, value2:S): {value: T, value2: S} {
+    return {value, value2};
+}
+
+
+console.log("Greet Function : ", greet(5, "yasin"));
+console.log("Greet Function 2 : ", greet2(6, "arafat"));
