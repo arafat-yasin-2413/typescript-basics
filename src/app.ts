@@ -1,8 +1,64 @@
 // **************** ZOD START ****************
+import { z } from 'zod';
+
+const userFormData = {
+  name: "Rajib Islam",
+  age: 28,
+  email: "rajib33@gmail.com",
+  phone: "+8801711223344",
+  address: {
+    street: "7 BT Road",
+    area: "Ashulia",
+    city: "Savar",
+    zipCode: "1340",
+    district: "Dhaka",
+    country: "Bangladesh"
+  },
+  isActive: true,
+  status: "active", // options: 'active', 'inactive', 'pending'
+  password: "SuperSecurePassword123!",
+  confirmPassword: "SuperSecurePassword123!",
+  website: "https://google.com",
+  salary: 75000,
+  skills: ["JavaScript", "TypeScript", "React", "Node.js"],
+  joinedDate: "2026-01-15"
+};
+
+// Validation Level 1 : Bassic Type Checking
+const userSchema = z.object({
+    name: z.string(),
+    age: z.number(),
+    email: z.email(),
+    phone: z.string(),
+    address: z.object({
+        street: z.string(),
+        area: z.string(),
+        city: z.string(),
+        zipCode: z.string(),
+        district: z.string(),
+        country: z.string(),
+    }),
+    isActive: z.boolean(),
+    status: z.enum(['active', 'inactive', 'pending']),
+    password: z.string(),
+    confirmPassword: z.string(), 
+    website: z.url(),
+    salary: z.number(),
+    skills: z.array(z.string()),
+    joinedDate: z.string()
+});
 
 
+const result = userSchema.safeParse(userFormData);
 
+console.log('Printing result : ',result);
 
+if(result.success) {
+    console.log('******* Zod Validation Successfull. ******');
+}
+else{
+    console.log('!!!!!!! Zod Validation Failed! !!!!!!!!');
+}
 
 
 
