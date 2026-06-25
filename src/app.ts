@@ -1,7 +1,7 @@
 // **************** ZOD START ****************
 import { z } from "zod";
 
-const userFormData = {
+const userFormData: userT = {
     name: "Rajib Islam",
     age: 28,
     email: "rajib33@gmail.com",
@@ -35,31 +35,75 @@ const userSchema = z.object({
         .number()
         .min(18, "User must be at least 18 years old.")
         .max(70, "Invalid Age. Age must be less than or equal to 70 years."),
-    email: z.email().regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,"Invalid email address."),
-    phone: z.string().regex(/^(?:\+88|88)?01[3-9]\d{8}$/, "Invalid BD Phone Number format"),
+    email: z
+        .email()
+        .regex(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            "Invalid email address.",
+        ),
+    phone: z
+        .string()
+        .regex(/^(?:\+88|88)?01[3-9]\d{8}$/, "Invalid BD Phone Number format"),
     address: z.object({
-        street: z.string().min(1, "Street is required").max(60, "Street cannot exceed 60 characters."),
-        area: z.string().min(1, "Area is required").max(30, "Area cannot exceed 30 characters."),
-        city: z.string().min(1, "City is required").max(30, "City cannot exceed 30 characters."),
-        district: z.string().min(1, "District is required").max(30, "District cannot exceed 30 characters."),
-        country: z.string().min(1, "Country is required").max(40, "Country cannot exceed 40 characters."),
+        street: z
+            .string()
+            .min(1, "Street is required")
+            .max(60, "Street cannot exceed 60 characters."),
+        area: z
+            .string()
+            .min(1, "Area is required")
+            .max(30, "Area cannot exceed 30 characters."),
+        city: z
+            .string()
+            .min(1, "City is required")
+            .max(30, "City cannot exceed 30 characters."),
+        district: z
+            .string()
+            .min(1, "District is required")
+            .max(30, "District cannot exceed 30 characters."),
+        country: z
+            .string()
+            .min(1, "Country is required")
+            .max(40, "Country cannot exceed 40 characters."),
     }),
     isActive: z.boolean(),
     status: z.enum(["active", "inactive", "pending", ""]).default("inactive"),
-    password: z.string().min(8, "Password must be at least 8 characters long" )
-    .regex(/[A-Z]/, "Password must contain at least one uppercase letter" )
-    .regex(/[a-z]/, "Password must contain at least one lowercase letter" )
-    .regex(/[0-9]/, "Password must contain at least one number" )
-    .regex(/[^A-Za-z0-9]/, "Password must contain at least one special character"),
+    password: z
+        .string()
+        .min(8, "Password must be at least 8 characters long")
+        .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+        .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+        .regex(/[0-9]/, "Password must contain at least one number")
+        .regex(
+            /[^A-Za-z0-9]/,
+            "Password must contain at least one special character",
+        ),
 
     confirmPassword: z.string("Confirm Password is Required."),
     website: z.url("Please enter a valid website url."),
-    salary: z.number().positive(),
-    skills: z.array(z.string().min(1, "Skill cannot be empty.").min(1, "Please select or type at least one skill.")),
+    salary: z
+        .number()
+        .positive()
+        .refine((value) => {
+            return value > 0;
+        }),
+    skills: z.array(
+        z
+            .string()
+            .min(1, "Skill cannot be empty.")
+            .min(1, "Please select or type at least one skill."),
+    ),
     joinedDate: z.string().date("Invalid date format. Expected YYYY-MM-DD"),
-});
+})
+.refine((data)=> data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+})
+
 
 const result = userSchema.safeParse(userFormData);
+
+type userT = z.infer<typeof userSchema>;
 
 console.log("Printing result : ", result);
 
@@ -70,6 +114,32 @@ if (result.success) {
 }
 
 // **************** ZOD END ****************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // **************** TYPESCRIPT BASICS START ****************
 
