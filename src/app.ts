@@ -1,3 +1,25 @@
+// **************** ZOD START ****************
+
+
+
+
+
+
+
+
+
+
+
+// **************** ZOD END ****************
+
+
+
+
+
+
+
+// **************** TYPESCRIPT BASICS START ****************
+
 import type { Vehicle } from "./types/type.js";
 
 
@@ -32,7 +54,7 @@ let numbers: number[] = [2, 3, 5, 7, 9]; // valid
 // numbers.push("cat"); // invalid operation
 
 numbers.push(10);
-console.log(numbers);
+// console.log(numbers);
 
 //********** */ 3. Object with Optional and Readonly
 let user: { name: string; age: number; isWorking: boolean, havePassport?: boolean, readonly batch: string } = {
@@ -47,7 +69,7 @@ let user: { name: string; age: number; isWorking: boolean, havePassport?: boolea
 user.isWorking = false;
 
 
-console.log("user object : ", user);
+// console.log("user object : ", user);
 
 
 // ********** */ 4. Function
@@ -55,7 +77,7 @@ function addNumbers (num1:number, num2:number):number {
     return num1 + num2;
 }
 
-console.log("Sum of two numbers: ",addNumbers(5,7));
+// console.log("Sum of two numbers: ",addNumbers(5,7));
 
 
 // ********** */ 5. Type vs Interface
@@ -66,7 +88,7 @@ let student:Student= {
     roll: 12,
     
 }
-console.log('printing student : ', student);
+// console.log('printing student : ', student);
 
 
 // using interface
@@ -77,7 +99,7 @@ let ashib : Doctor = {
     college: "DMC",
 }
 
-console.log("Printing Doctor: ", ashib);
+// console.log("Printing Doctor: ", ashib);
 
 
 // using extends
@@ -98,13 +120,13 @@ let admin1 = {
     authorization: true,
 }
 
-console.log('Printing admin :', admin1);
+// console.log('Printing admin :', admin1);
 
-let myVehicle : Vehicle = {
-    name: "Toyota blue",
-    model: "2022",
-    wheels: 4,
-}
+// let myVehicle : Vehicle = {
+//     name: "Toyota blue",
+//     model: "2022",
+//     wheels: 4,
+// }
 
 
 // generics
@@ -117,6 +139,7 @@ function greet2<T,S>(value:T, value2:S): {value: T, value2: S} {
 }
 
 
-console.log("Greet Function : ", greet(5, "yasin"));
-console.log("Greet Function 2 : ", greet2(6, "arafat"));
+// console.log("Greet Function : ", greet(5, "yasin"));
+// console.log("Greet Function 2 : ", greet2(6, "arafat"));
 
+// **************** TYPESCRIPT BASICS END ****************
