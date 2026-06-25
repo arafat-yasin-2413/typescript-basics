@@ -1,5 +1,64 @@
+# Zod
+
+
+### ১. Zod কী এবং কেন আমরা এটি ব্যবহার করি?
+**উত্তর:** Zod হলো একটি TypeScript-first স্কিমা ডিক্লারেশন এবং ভ্যালিডেশন লাইব্রেরি। 
+* **কেন ব্যবহার করি:** TypeScript মূলত কম্পাইল-টাইমে (compile-time) টাইপ চেক করে, কিন্তু রান-টাইমে (runtime) ডেটা সঠিক কিনা তা নিশ্চিত করতে পারে না (যেমন: API থেকে ভুল ডেটা আসলে অ্যাপ ক্র্যাশ করতে পারে)। Zod রান-টাইমে ডেটা ভ্যালিডেশন করে এবং একই সাথে সেই স্কিমা থেকে স্বয়ংক্রিয়ভাবে TypeScript টাইপ তৈরি করতে পারে।
+
+### ২. `z.infer` কী এবং এর কাজ কী?
+**উত্তর:** `z.infer` ব্যবহার করে Zod-এর কোনো স্কিমা থেকে সরাসরি TypeScript টাইপ বা ইন্টারফেস এক্সট্রাক্ট (extract) বা বের করে নেওয়া যায়। এর ফলে আপনাকে আলাদা করে ম্যানুয়ালি টাইপ লিখতে হয় না। 
+
+```typescript
+import { z } from 'zod';
+
+const UserSchema = z.object({
+  username: z.string(),
+  age: z.number(),
+});
+
+// UserSchema থেকে TypeScript টাইপ তৈরি করা
+type User = z.infer<typeof UserSchema>;
+```
+
+### ৩. Zod-এ parse() এবং safeParse() এর মধ্যে পার্থক্য কী?
+**উত্তর:** এই দুটির মূল পার্থক্য হলো এরর হ্যান্ডেল করার পদ্ধতিতে:
+
+- `parse()`: ইনপুট ডেটা স্কিমার সাথে না মিললে এটি সরাসরি একটি ZodError throw করে। তাই এটি ব্যবহার করলে try-catch ব্লক ব্যবহার করতে হয়।
+
+- `safeParse()`: এটি কোনো এরর throw করে না। এটি একটি অবজেক্ট রিটার্ন করে যার মধ্যে success (true/false) ফ্ল্যাগ থাকে। যদি সফল হয় তবে data পাওয়া যায়, আর ব্যর্থ হলে error পাওয়া যায়।
+
+
+### ৪. কোনো ফিল্ডকে Optional (ঐচ্ছিক) বা Nullable করার উপায় কী?
+**উত্তর:** Zod-এ optional() এবং nullable() এর মধ্যে সূক্ষ্ম পার্থক্য আছে:
+
+- `.optional()`: ফিল্ডটি একদম নাও থাকতে পারে (undefined)। যেমন: `z.string().optional()` মানে টাইপটি হবে `string | undefined`।
+
+- `.nullable()`: ফিল্ডটি অবশ্যই থাকতে হবে, তবে তার ভ্যালু `null` হতে পারে। যেমন: `z.string().nullable()` মানে টাইপটি হবে `string | null`。
+
+### ৫. Zod কীভাবে Formik বা React Hook Form এর মতো লাইব্রেরির সাথে কাজ করে?
+**উত্তর:** ফ্রন্টএন্ডে ফর্ম ভ্যালিডেশনের জন্য Zod চমৎকার কাজ করে। `React Hook Form` এর মতো লাইব্রেরির সাথে Zod যুক্ত করার জন্য `@hookform/resolvers` ব্যবহার করা হয়। এর ফলে ফর্মের ইনপুট সাবমিট হওয়ার সাথে সাথে Zod স্কিমা ব্যাকগ্রাউন্ডে পুরো ফর্মের ডেটা ভ্যালিডেশন করে এরর মেসেজগুলো UI-তে পাস করে দেয়।
+
+----
+
+### Todo App 
+
+✨ **GitHub Repo:** [View in GitHub](https://github.com/arafat-yasin-2413/todo-app)
+
+✨ **Live Demo:** [View Live Site](https://todo-app-lac-two-21.vercel.app/)
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
 # TypeScript Basics
----
+
 
 ## What is TypeScript?
 TypeScript is an open-source programming language developed by Microsoft. It is a strict syntactical **superset of JavaScript**, meaning that any valid JavaScript code is also valid TypeScript code. 
