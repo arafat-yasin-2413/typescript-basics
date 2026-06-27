@@ -118,6 +118,8 @@ Since browsers and Node.js cannot run `TypeScript` directly, it must be compiled
 * **`void`:** যখন কোনো ফাংশন কোনো কিছু রিটার্ন করে না (বা শুধু কাজ শেষ করে বের হয়ে যায়), তখন তার রিটার্ন টাইপ হয় `void`।
 * **`never`:** যে ফাংশনটি কখনোই তার স্বাভাবিক শেষ মাথায় পৌঁছায় না (যেমন: ফাংশনের ভেতর থেকে সবসময় এরর থ্রো করে অথবা ইনফিনিট লুপ চলে), তার রিটার্ন টাইপ হয় `never`।
 
+### Q11: Type Assertion কী? 
+
 
 ## Project Setup Guideline
 
